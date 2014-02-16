@@ -1,2 +1,32 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Task Reminder' /}
+<div id="login_form">
+    #{form @login() }
+        #{ifErrors}
+        <p class="error">
+            Wrong Login/Password
+        </p>
+        #{/ifErrors}
+    <input type="text" name="username" placeholder="username"/><br>
+    <input type="password" name="password" placeholder="password"/><br>
+    <input type="submit" value="Login"/>
+    #{/form}
+</div>
+
+<div id="registration_form">
+    #{form @register() }
+        #{ifErrors}
+            <p class="error">
+                Email, username and password are required!
+            </p>
+        #{/ifErrors}
+
+        <input type="email" name="email" placeholder="email"><br>
+        <input type="text" name="username" placeholder="username"/><br>
+        <input type="password" name="password" placeholder="password"/><br>
+        <input type="password" name="confirmation" placeholder="confirmation"/><br>
+        <input type="text" name="firstname" placeholder="firstname"/><br>
+        <input type="text" name="lastname" placeholder="lastname"/><br>
+        <input type="submit" value="Register"/>
+    #{/form}
+</div>

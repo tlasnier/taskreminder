@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+#{set title:'Home Page' /}
+<div>
+    <h1>Hello ${user.username} !</h1>
+    <p>Here you can manage your tasks!</p>
+</div>
+
+<div>
+    <a href="@{Application.logout}"> <input type="button" value="Get out!"/></a>
+</div>

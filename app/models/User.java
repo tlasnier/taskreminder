@@ -29,10 +29,8 @@ public class User extends Model{
     @Required
     private String username;
 
-    @Required
     private String hashedPassword;
 
-    @Required
     private String salt;
 
     private String firstname;
@@ -51,7 +49,7 @@ public class User extends Model{
         }
         else {
             System.out.println("It does not match");
-            throw new BadPasswordException("Bad Password authentication attempt for user " + username);
+            throw new BadPasswordException("Wrong password for user " + username);
         }
     }
 

@@ -34,6 +34,9 @@ public class Application extends Controller {
     }
 
     public static void login(@Required String username, @Required String password) {
+        flash.now("form", "login");
+        flash.keep();
+
         if(validation.hasErrors()) {
             validation.keep();
             index();
@@ -41,21 +44,28 @@ public class Application extends Controller {
 
         try {
             User.connect(username, password);
-        } catch (NoUserFoundException e) {
+        }
+        catch (NoUserFoundException e) {
             System.out.println("ERROR : " + e.getMessage());
-            index();
-        } catch (BadPasswordException e) {
-            System.out.println("ERROR : " + e.getMessage());
+            flash.error(e.getMessage());
             index();
         }
-        session.put("user", username);
+        catch (BadPasswordException e) {
+            System.out.println("ERROR : " + e.getMessage());
+            flash.error(e.getMessage());
+            index();
+        }
 
+        session.put("user", username);
+        flash.success("You've been logged!");
         homepage();
     }
 
     public static void register(@Required @Email String email, @Required @MinSize(3) String username,
                                 @Required @MinSize(6) String password, @Equals("password") String confirmation,
                                 String firstname, String lastname) {
+        flash.now("form", "register");
+        flash.keep();
 
         if (validation.hasErrors()) {
             validation.keep();
@@ -63,7 +73,7 @@ public class Application extends Controller {
         }
 
         if (User.find("byEmail", email).first() != null || User.find("byUsername", username).first() != null ) {
-            //TODO what if there is another user with same email?
+            //TODO separate between email an username
             validation.equals("","abcd");
             validation.keep();
             System.out.println("Already existing user");

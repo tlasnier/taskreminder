@@ -4,9 +4,7 @@ import models.exception.BadPasswordException;
 import models.exception.NoUserFoundException;
 import org.apache.commons.lang.RandomStringUtils;
 import org.mindrot.jbcrypt.BCrypt;
-import play.data.validation.Email;
-import play.data.validation.Required;
-import play.data.validation.Unique;
+import play.data.validation.*;
 import play.db.jpa.Model;
 
 import javax.persistence.Column;
@@ -18,15 +16,17 @@ import javax.persistence.Entity;
 
 @Entity
 public class User extends Model{
-    @Unique
+    @Unique(message = "This email is already linked to an account")
     @Column(unique = true)
-    @Email
+    @Email(message = "This must be a valid email")
     @Required
     private String email;
 
-    @Unique
+    @Unique(message = "This username is already used")
     @Column(unique = true)
     @Required
+    @MinSize(value = 3, message = "Username min length is 3")
+    @MaxSize(value = 15, message = "Username max length is 15")
     private String username;
 
     private String hashedPassword;
@@ -44,11 +44,9 @@ public class User extends Model{
         }
 
         if (BCrypt.checkpw(password, user.getHashedPassword())) {
-            System.out.println("It matches");
             return user;
         }
         else {
-            System.out.println("It does not match");
             throw new BadPasswordException("Wrong password for user " + username);
         }
     }

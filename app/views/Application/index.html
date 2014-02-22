@@ -1,67 +1,69 @@
-#{extends 'main.html' /}
+#{extends 'nologout.html' /}
 #{set title:'Task Reminder' /}
-<div id="login_form">
-    #{ifErrors }
-        <h1> Oops ...</h1>
-    #{/ifErrors}
 
-#{form @login() }
-    #{if flash.contains("error")}
-        <span class="error">${flash.get("error")}<br></span>
-    #{/if}
+<fieldset class="form" id="login_form" xmlns="httdiv://www.w3.org/1999/html">
+    <legend>Login</legend>
 
-    <div>
-        <input type="text" name="username" placeholder="username"/>
-        #{if flash.get("form").equals("login")}
-            #{error 'username'/}
-        #{/if}
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="password"/>
-        #{if flash.get("form").equals("login")}
-            #{error 'password'/}
-        #{/if}
-    </div>
-    <input type="submit" value="Login"/>
+    #{form @login() }
+        <div>
+            <label for="login.username">Username :</label>
+            <input id="login.username" type="text" name="username" placeholder="username" required/>
+            #{if flash.get("form").equals("login")}
+                #{error 'username'/}
+            #{/if}
+        </div>
+        <div>
+            <label for="login.password">Password :</label>
+            <input id="login.password" type="password" name="password" placeholder="password" required/>
+            #{if flash.get("form").equals("login")}
+                #{error 'password'/}
+            #{/if}
+        </div>
+        <input id="login.submit" type="submit" value="Login"/>
     #{/form}
-</div>
+</fieldset>
 
-<hr/>
+<fieldset class="form" id="register_form">
+    <legend>Don't have an account yet?</legend>
 
-<div id="registration_form">
-#{form @register() }
-    <div>
-        <input type="email" name="email" placeholder="email">
-        #{if flash.get("form").equals("register")}
-            #{error 'email'/}
-        #{/if}
-    </div>
-    <div>
-        <input type="text" name="username" placeholder="username"/>
-        #{if flash.get("form").equals("register")}
-            #{error 'username'/}
-        #{/if}
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="password"/>
-        #{if flash.get("form").equals("register")}
-            #{error 'password'/}
-        #{/if}
-    </div>
-    <div>
-        <input type="password" name="confirmation" placeholder="confirmation"/>
-        #{if flash.get("form").equals("register")}
-            #{error 'confirmation'/}
-        #{/if}
-    </div>
-    <div>
-        <input type="text" name="firstname" placeholder="firstname"/>
-    </div>
-    <div>
-        <input type="text" name="lastname" placeholder="lastname"/>
-    </div>
+    #{form @register() }
+        <div>
+            <label for="register.email">Email :</label>
+            <input id="register.email" type="email" name="user.email" placeholder="email" required/>
+            #{if flash.get("form").equals("register")}
+                <p class="error">#{error 'user.email'/}</p>
+            #{/if}
+        </div>
+        <div>
+            <label for="register.username">Username <span class="hint">(3 chars min)</span> :</label>
+            <input id="register.username" type="text" name="user.username" placeholder="username" required pattern=".{3,15}"/>
+            #{if flash.get("form").equals("register")}
+                <p class="error">#{error 'user.username'/}</p>
+            #{/if}
+        </div>
+        <div>
+            <label for="register.password">Password <span class="hint">(6 chars min)</span> :</label>
+            <input id="register.password" type="password" name="password" placeholder="password" required pattern=".{6,}"/>
+            #{if flash.get("form").equals("register")}
+                <p class="error">#{error 'password'/}</p>
+            #{/if}
+        </div>
+        <div>
+            <label for="register.confirmation">Confirm password :</label>
+            <input id="register.confirmation" type="password" name="confirmation" placeholder="confirmation" required pattern=".{6,}"/>
+            #{if flash.get("form").equals("register")}
+                <p class="error">#{error 'confirmation'/}</p>
+            #{/if}
+        </div>
+        <div>
+            <label for="register.firstname">Firstname :</label>
+            <input id="register.firstname" type="text" name="user.firstname" placeholder="firstname"/>
+        </div>
+        <div>
+            <label for="register.lastname">Lastname :</label>
+            <input id="register.lastname" type="text" name="user.lastname" placeholder="lastname"/>
+        </div>
 
-    <input type="submit" value="Register"/>
-
+        <input id="register.submit" type="submit" value="Register"/>
     #{/form}
-</div>
+</fieldset>

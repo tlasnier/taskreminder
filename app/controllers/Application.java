@@ -3,10 +3,7 @@ package controllers;
 import models.User;
 import models.exception.BadPasswordException;
 import models.exception.NoUserFoundException;
-import play.data.validation.Email;
-import play.data.validation.Equals;
-import play.data.validation.MinSize;
-import play.data.validation.Required;
+import play.data.validation.*;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -39,6 +36,7 @@ public class Application extends Controller {
 
         if(validation.hasErrors()) {
             validation.keep();
+            //render("Application/index.html");
             index();
         }
 
@@ -61,9 +59,8 @@ public class Application extends Controller {
         homepage();
     }
 
-    public static void register(@Required @Email String email, @Required @MinSize(3) String username,
-                                @Required @MinSize(6) String password, @Equals("password") String confirmation,
-                                String firstname, String lastname) {
+    public static void register(@Valid User user,
+                                @Required @MinSize(6) String password, @Equals("password") String confirmation) {
         flash.now("form", "register");
         flash.keep();
 
@@ -72,24 +69,21 @@ public class Application extends Controller {
             index();
         }
 
-        if (User.find("byEmail", email).first() != null || User.find("byUsername", username).first() != null ) {
+        if (User.find("byEmail", user.getEmail()).first() != null ){
             //TODO separate between email an username
-            validation.equals("","abcd");
+            validation.equals("", "abcd");
             validation.keep();
             System.out.println("Already existing user");
             index();
         }
+        if (User.find("byUsername", user.getUsername()).first() != null ) { 
+        }
 
         else {
-            User user = new User();
-            user.setEmail(email);
-            user.setUsername(username);
-            user.setFirstname(firstname);
-            user.setLastname(lastname);
             User.register(user, password);
             user.save();
 
-            session.put("user", username);
+            session.put("user", user.getUsername());
 
             homepage();
         }

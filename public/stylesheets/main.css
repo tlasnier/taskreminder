@@ -1,0 +1,93 @@
+html {
+    background: #364B66;
+    font-family: Helvetica, serif;
+    color: #cbd2c8;
+}
+
+body {
+    width: 900px;
+    padding: 0 30px;
+    margin: auto;
+}
+
+header h1 {
+    font-size: 300%;
+    margin-bottom: 10px;
+    color: #829C91;
+}
+
+header h2 {
+    font-size: 200%;
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    color: #829C91;
+}
+
+nav {
+    margin: 5px;
+    color: #829C91;
+    font-weight: bold;
+}
+
+nav a, nav a:visited {
+    color: #829C91;
+    text-decoration: none;
+}
+
+.error {
+    font-size: 80%;
+    color: orange;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: orange;
+
+}
+
+.form {
+    margin-top: 40px;
+    padding: 20px;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+form > div {
+    margin: 6px;
+}
+
+.form label {
+    display:inline-block;
+    width: 170px;
+    border-bottom: 2px;
+}
+
+#login_form {
+    float: left;
+    width: 40%;
+    height: auto;
+
+}
+
+#register_form {
+    float: right;
+    width: 40%;
+    height: auto;
+}
+
+#logout_button {
+    float: right;
+
+}
+
+input[type=submit] {
+    border-radius: 2px;
+    background: #829C91;
+    float: right;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+
+.hint {
+    border: 0;
+    font-size: 60%;
+}

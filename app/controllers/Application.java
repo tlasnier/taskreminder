@@ -40,7 +40,6 @@ public class Application extends Controller {
 
         if(validation.hasErrors()) {
             validation.keep();
-            //render("Application/index.html");
             index();
         }
 

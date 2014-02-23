@@ -26,6 +26,10 @@ public class Application extends Controller {
         return session.contains("user");
     }
 
+    public static void index(User attempt) {
+        render(attempt);
+    }
+
     public static void index() {
         render();
     }
@@ -43,12 +47,7 @@ public class Application extends Controller {
         try {
             User.connect(username, password);
         }
-        catch (NoUserFoundException e) {
-            System.out.println("ERROR : " + e.getMessage());
-            flash.error(e.getMessage());
-            index();
-        }
-        catch (BadPasswordException e) {
+        catch (NoUserFoundException | BadPasswordException e) {
             System.out.println("ERROR : " + e.getMessage());
             flash.error(e.getMessage());
             index();
@@ -66,22 +65,14 @@ public class Application extends Controller {
 
         if (validation.hasErrors()) {
             validation.keep();
-            index();
-        }
-
-        if (User.find("byEmail", user.getEmail()).first() != null ){
-            //TODO separate between email an username
-            validation.equals("", "abcd");
-            validation.keep();
-            System.out.println("Already existing user");
-            index();
-        }
-        if (User.find("byUsername", user.getUsername()).first() != null ) { 
+            index(user);
         }
 
         else {
             User.register(user, password);
             user.save();
+
+            //TODO : send an email.
 
             session.put("user", user.getUsername());
 

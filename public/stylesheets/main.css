@@ -23,15 +23,14 @@ header h2 {
     margin-bottom: 5px;
     color: #829C91;
 }
-
 nav {
     margin: 5px;
-    color: #829C91;
     font-weight: bold;
 }
 
+
 nav a, nav a:visited {
-    color: #829C91;
+    color: darkred;
     text-decoration: none;
 }
 
@@ -85,6 +84,8 @@ input[type=submit] {
     float: right;
     margin-top: 5px;
     margin-right: 15px;
+    color: darkred;
+    font-weight: bold;
 }
 
 .hint {

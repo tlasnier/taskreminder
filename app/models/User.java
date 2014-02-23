@@ -31,8 +31,6 @@ public class User extends Model{
 
     private String hashedPassword;
 
-    private String salt;
-
     private String firstname;
 
     private String lastname;
@@ -52,8 +50,7 @@ public class User extends Model{
     }
 
     public static void register(User newUser, String password) {
-        newUser.setSalt(BCrypt.gensalt());
-        newUser.setHashedPassword(BCrypt.hashpw(password, newUser.getSalt()));
+        newUser.setHashedPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
     }
 
     public String getEmail() {
@@ -70,14 +67,6 @@ public class User extends Model{
 
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public String getFirstname() {

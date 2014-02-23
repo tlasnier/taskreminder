@@ -1,3 +1,7 @@
+<head>
+
+</head>
+
 #{extends 'nologout.html' /}
 #{set title:'Task Reminder' /}
 
@@ -8,17 +12,16 @@
         <div>
             <label for="login.username">Username :</label>
             <input id="login.username" type="text" name="username" placeholder="username" required/>
-            #{if flash.get("form").equals("login")}
-                #{error 'username'/}
-            #{/if}
+            #{error 'username'/}
         </div>
         <div>
             <label for="login.password">Password :</label>
             <input id="login.password" type="password" name="password" placeholder="password" required/>
-            #{if flash.get("form").equals("login")}
-                #{error 'password'/}
-            #{/if}
+            #{error 'password'/}
         </div>
+        #{if flash.get("form").equals("login")}
+            <p class="error">${flash.get("error")}</p>
+        #{/if}
         <input id="login.submit" type="submit" value="Login"/>
     #{/form}
 </fieldset>
@@ -29,14 +32,14 @@
     #{form @register() }
         <div>
             <label for="register.email">Email :</label>
-            <input id="register.email" type="email" name="user.email" placeholder="email" required/>
+            <input id="register.email" type="email" name="user.email" placeholder="email" value="${attempt?.email}" required/>
             #{if flash.get("form").equals("register")}
                 <p class="error">#{error 'user.email'/}</p>
             #{/if}
         </div>
         <div>
             <label for="register.username">Username <span class="hint">(3 chars min)</span> :</label>
-            <input id="register.username" type="text" name="user.username" placeholder="username" required pattern=".{3,15}"/>
+            <input id="register.username" type="text" name="user.username" placeholder="username" value="${attempt.username}" required pattern=".{3,15}"/>
             #{if flash.get("form").equals("register")}
                 <p class="error">#{error 'user.username'/}</p>
             #{/if}
@@ -57,11 +60,11 @@
         </div>
         <div>
             <label for="register.firstname">Firstname :</label>
-            <input id="register.firstname" type="text" name="user.firstname" placeholder="firstname"/>
+            <input id="register.firstname" type="text" name="user.firstname" placeholder="firstname" value="${attempt.firstname}"/>
         </div>
         <div>
             <label for="register.lastname">Lastname :</label>
-            <input id="register.lastname" type="text" name="user.lastname" placeholder="lastname"/>
+            <input id="register.lastname" type="text" name="user.lastname" placeholder="lastname" value="${attempt.lastname}"/>
         </div>
 
         <input id="register.submit" type="submit" value="Register"/>

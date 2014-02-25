@@ -26,13 +26,13 @@
             <legend>Change your password</legend>
         #{form @Users.changePassword()}
             <div>
-                <label for="changePW.oldpassword">Old password :</label>
-                <input id="changePW.oldpassword" type="password" name="oldpassword" placeholder="old password" required />
+                <label for="changePW.oldPassword">Old password :</label>
+                <input id="changePW.oldPassword" type="password" name="oldPassword" placeholder="old password" required />
                 <p class="error">#{error 'password'/}</p>
             </div>
             <div>
-                <label for="changePW.password">Password <span class="hint">(6 chars min)</span> :</label>
-                <input id="changePW.password" type="password" name="password" placeholder="password" required pattern=".{6,}"/>
+                <label for="changePW.newPassword">Password <span class="hint">(6 chars min)</span> :</label>
+                <input id="changePW.newPassword" type="password" name="newPassword" placeholder="password" required pattern=".{6,}"/>
                 <p class="error">#{error 'password'/}</p>
             </div>
             <div>

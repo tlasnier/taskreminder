@@ -8,7 +8,7 @@
 <fieldset class="form" id="login_form" xmlns="httdiv://www.w3.org/1999/html">
     <legend>Login</legend>
 
-    #{form @login() }
+    #{form @Application.login() }
         <div>
             <label for="login.username">Username :</label>
             <input id="login.username" type="text" name="username" placeholder="username" required/>
@@ -29,7 +29,7 @@
 <fieldset class="form" id="register_form">
     <legend>Don't have an account yet?</legend>
 
-    #{form @register() }
+    #{form @Application.register() }
         <div>
             <label for="register.email">Email :</label>
             <input id="register.email" type="email" name="user.email" placeholder="email" value="${flash['user.email']}" required/>

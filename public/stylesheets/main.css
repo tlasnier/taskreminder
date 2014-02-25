@@ -82,26 +82,28 @@ form > div {
     margin: 6px;
 }
 
-.form label {
+.form label, .form input {
     display:inline-block;
     width: 170px;
     border-bottom: 2px;
 }
 
-#login_form {
+
+#login_form, #editInfo_form {
     float: left;
     width: 40%;
     height: auto;
 
 }
 
-#register_form {
+#register_form, #changePW_form {
     float: right;
     width: 40%;
     height: auto;
 }
 
 input[type=submit] {
+    width: auto;
     border-radius: 2px;
     background: #829C91;
     float: right;

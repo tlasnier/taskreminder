@@ -1,0 +1,46 @@
+#{extends 'main.html' /}
+#{set title:'Task-Reminder Edit your account' /}
+<div>
+    <fieldset class="form" id="editInfo_form">
+        <legend>Personal information</legend>
+        #{form @Users.editInfo()}
+            <input type="hidden" name="user.username" value="${current.username}"/>
+            <div>
+                <label for="edit_profile.email">Email :</label>
+                <input id="edit_profile.email" type="email" name="user.email" placeholder="email" value="${flash['user.email']?:current.email}" required/>
+                <p class="error">#{error 'user.email'/}</p>
+            </div>
+            <div>
+                <label for="edit_profile.firstname">First name :</label>
+                <input id="edit_profile.firstname" type="text" name="user.firstname" placeholder="first name" value="${flash['user.firstname']?:current.firstname}" required/>
+            </div>
+            <div>
+                <label for="edit_profile.lastname">Last name :</label>
+                <input id="edit_profile.lastname" type="text" name="user.lastname" placeholder="last name" value="${flash['user.lastname']?:current.lastname}" required/>
+            </div>
+            <input type="submit" value="Save">
+        #{/form}
+    </fieldset>
+
+    <fieldset class="form" id="changePW_form">
+            <legend>Change your password</legend>
+        #{form @Users.changePassword()}
+            <div>
+                <label for="changePW.oldpassword">Old password :</label>
+                <input id="changePW.oldpassword" type="password" name="oldpassword" placeholder="old password" required />
+                <p class="error">#{error 'password'/}</p>
+            </div>
+            <div>
+                <label for="changePW.password">Password <span class="hint">(6 chars min)</span> :</label>
+                <input id="changePW.password" type="password" name="password" placeholder="password" required pattern=".{6,}"/>
+                <p class="error">#{error 'password'/}</p>
+            </div>
+            <div>
+                <label for="register.confirmation">Confirm password :</label>
+                <input id="register.confirmation" type="password" name="confirmation" placeholder="confirmation" required pattern=".{6,}"/>
+                <p class="error">#{error 'confirmation'/}</p>
+            </div>
+            <input type="submit" value="Save">
+        #{/form}
+    </fieldset>
+</div>

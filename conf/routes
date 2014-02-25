@@ -2,9 +2,11 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+# index page
 GET     /                                       Application.index
 GET     /homepage/                              Application.homepage
+
+GET     /account/                               Users.editAccount
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

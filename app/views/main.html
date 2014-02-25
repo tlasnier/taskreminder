@@ -15,7 +15,15 @@
             <h2>A place that will remember tasks for you</h2>
         </header>
         <nav>
-            <a id="logout_button" href="@{Application.logout()}">Logout</a>
+            <div id="menu-container">
+                <ul id="top-bar">
+                    <li><a href="#">My account</a></li>
+                    <li><a href="#">My tasks</a></li>
+                    <li><a href="#">Followed tasks</a></li>
+                    <li><a href="#">Friends</a></li>
+                    <li><a id="logout_button" href="@{Application.logout()}">Logout</a></li>
+                </ul>
+            </div>
         </nav>
         #{doLayout /}
     </body>

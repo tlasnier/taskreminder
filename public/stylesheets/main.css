@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    width: 900px;
+    width: 1000px;
     padding: 0 30px;
     margin: auto;
 }
@@ -23,16 +23,44 @@ header h2 {
     margin-bottom: 5px;
     color: #829C91;
 }
+
+/*TOP BAR*/
+
 nav {
-    margin: 5px;
-    font-weight: bold;
+    margin: 20px auto 0;
+    color: #FEF4E9;
+    height: 50px;
+    border: 1px solid #DA7C0C;
+    background: -moz-linear-gradient(center top , #FAA51A, #F47A20) repeat scroll 0% 0% transparent;
+    border-radius: 0.5em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+div#menu-container {
+    float: right;
+}
 
-nav a, nav a:visited {
-    color: darkred;
+ul#top-bar li {
+    float: left;
+    list-style: none outside none;
+}
+
+ul#top-bar li a {
+    padding: 0px 70px 6px 0;
+    color: #FFF;
+    margin-right: 2px;
+    font-size: 140%;
+    text-shadow: 1px 1px #7E4D0E;
     text-decoration: none;
+    position: relative;
 }
+
+ul#top-bar li a:hover,ul#nav li a:focus {
+    color: #222;
+    text-shadow: none;
+}
+
+/*END TOP BAR*/
 
 .error {
     font-size: 80%;
@@ -71,11 +99,6 @@ form > div {
     float: right;
     width: 40%;
     height: auto;
-}
-
-#logout_button {
-    float: right;
-
 }
 
 input[type=submit] {

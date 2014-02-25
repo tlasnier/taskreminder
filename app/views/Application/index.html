@@ -32,14 +32,14 @@
     #{form @register() }
         <div>
             <label for="register.email">Email :</label>
-            <input id="register.email" type="email" name="user.email" placeholder="email" value="${attempt?.email}" required/>
+            <input id="register.email" type="email" name="user.email" placeholder="email" value="${flash['user.email']}" required/>
             #{if flash.get("form").equals("register")}
                 <p class="error">#{error 'user.email'/}</p>
             #{/if}
         </div>
         <div>
             <label for="register.username">Username <span class="hint">(3 chars min)</span> :</label>
-            <input id="register.username" type="text" name="user.username" placeholder="username" value="${attempt.username}" required pattern=".{3,15}"/>
+            <input id="register.username" type="text" name="user.username" placeholder="username" value="${flash['user.username']}" required pattern=".{3,15}"/>
             #{if flash.get("form").equals("register")}
                 <p class="error">#{error 'user.username'/}</p>
             #{/if}
@@ -60,11 +60,11 @@
         </div>
         <div>
             <label for="register.firstname">First name :</label>
-            <input id="register.firstname" type="text" name="user.firstname" placeholder="firstname" value="${attempt.firstname}"/>
+            <input id="register.firstname" type="text" name="user.firstname" placeholder="first name" value="${flash['user.firstname']}"/>
         </div>
         <div>
             <label for="register.lastname">Last name :</label>
-            <input id="register.lastname" type="text" name="user.lastname" placeholder="lastname" value="${attempt.lastname}"/>
+            <input id="register.lastname" type="text" name="user.lastname" placeholder="last name" value="${flash['user.lastname']}"/>
         </div>
 
         <input id="register.submit" type="submit" value="Register"/>

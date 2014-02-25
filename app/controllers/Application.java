@@ -7,28 +7,7 @@ import play.data.validation.*;
 import play.mvc.Before;
 import play.mvc.Controller;
 
-public class Application extends Controller {
-
-    @Before(unless = {"index", "login", "register"})
-    public static void checkAuthentication () {
-        if (!isUserLoggedIn())
-            index();
-    }
-
-    @Before(only = "index")
-    public static void checkAuthenticationBeforeIndex () {
-        if (isUserLoggedIn()) {
-            homepage();
-        }
-    }
-
-    public static boolean isUserLoggedIn() {
-        return session.contains("user");
-    }
-
-    public static void index(User attempt) {
-        render(attempt);
-    }
+public class Application extends AbstractController {
 
     public static void index() {
         render();
@@ -63,8 +42,9 @@ public class Application extends Controller {
         flash.keep();
 
         if (validation.hasErrors()) {
+            params.flash();
             validation.keep();
-            index(user);
+            render("@index");
         }
 
         else {

@@ -1,0 +1,15 @@
+div.error {
+    color: orangered;
+    margin-top: 60px;
+    padding: 20px;
+    border: solid 4px darkred;
+}
+
+#error_title {
+    margin-top: 0;
+    font-size: 300%;
+}
+
+#error_message {
+    font-size: 200%;
+}

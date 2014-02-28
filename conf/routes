@@ -6,6 +6,11 @@
 GET     /                                       Application.index
 GET     /homepage/                              Application.homepage
 
+GET     /mytasks/                               Tasks.showUsersTasks
+GET     /tasks/edit/{<[0-9]+>id}                Tasks.edit
+POST    /tasks/delete/{<[0-9]+>id}              Tasks.delete
+#GET    /tasks/show/{<[0-9]+>id}
+
 GET     /account/                               Users.editAccount
 
 # Ignore favicon requests

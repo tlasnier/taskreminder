@@ -5,7 +5,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import play.data.validation.Equals;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
-import play.data.validation.Valid;
 
 /**
  * Created by Thibault on 25/02/14.

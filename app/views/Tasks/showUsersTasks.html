@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:'Task-Reminder See your tasks' /}
+
+#{set 'moreStyles'}
+    #{stylesheet 'task.css' /}
+#{/set}
+
+<a id="task_creation_button" href="#">
+    <img alt="add task" src="@{'/public/images/green-cross.png'}" width="15" height="15"/> Create a new task.
+</a>
+
+#{list items:tasks, as:'task'}
+<div class="${task.priority}">
+    <fieldset class="display_task">
+        <legend>${task.priority}</legend>
+        <h3 class="task_title"><a href =@{Tasks.edit(task.id)}>${task.title}</a></h3>
+        #{if task.description}
+            <h4>Description :</h4>
+            <p class="task_description">${task.description}</p>
+        #{/if}
+        <p>Done? <span ${task.completed ? 'class=task_done' : 'class=task_undone' }>${task.completed ? 'Yes !' : 'Not yet'}</span></p>
+        #{if task.dueDate}
+            <p>Due date : ${task.dueDate.format("dd/MM/YYYY")}#{if task.dueDatePassed} <span class="warning_due_date"> → Warning !</span> #{/if}</p>
+        #{/if}
+
+        #{if task.tags}
+            <p>Tags : #{list items:task.tags, as:'tag'}<a href="#">${tag.name}</a>#{if tag_isLast}.#{/if}#{else}, #{/else}#{/list}</p>
+        #{/if}
+
+        #{form @Tasks.delete(task.id), method:'POST'}
+            <input type="submit" value="Delete"/>
+        #{/form}
+        #{form @Tasks.edit(task.id), method:'GET'}
+            <input type="submit" value="Edit"/>
+        #{/form}
+    </fieldset>
+</div>
+#{/list}

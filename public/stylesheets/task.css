@@ -1,0 +1,44 @@
+#task_creation_button {
+    margin: 5px 30px;
+    font-size: 120%;
+}
+
+fieldset.display_task {
+    margin: 10px;
+    width: 40%;
+    float: left;
+}
+
+fieldset.display_task > legend {
+    font-weight: bold;
+}
+
+div.URGENT > fieldset {
+    background-color: #222222;
+}
+
+div.IMPORTANT > fieldset {
+    background-color: #303138;
+}
+
+div.OPTIONAL > fieldset {
+    background-color: #494e6a;
+}
+
+.task_title > a, .task_title {
+    color: inherit;
+    font-size: 120%;
+    margin-top: 0;
+}
+
+span.warning_due_date {
+    color: orangered;
+}
+
+span.task_done {
+    color: greenyellow;
+}
+
+span.task_undone {
+    color: orangered;
+}

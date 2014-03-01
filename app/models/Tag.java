@@ -16,6 +16,10 @@ public class Tag extends Model{
     @Required
     private String name;
 
+    public Tag(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -23,4 +27,11 @@ public class Tag extends Model{
     public void setName(String name) {
         this.name = name;
     }
+
+    public void createIfNotExists() {
+        Tag inBase = Tag.find("byName", name).first();
+        if (inBase == null)
+            save();
+    }
+
 }

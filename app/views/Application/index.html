@@ -25,7 +25,7 @@
 <fieldset class="form" id="register_form">
     <legend>Don't have an account yet?</legend>
 
-    #{form @Application.register() }
+    #{form @Application.register(), method:'POST' }
         <div>
             <label for="register.email">Email :</label>
             <input id="register.email" type="email" name="user.email" placeholder="email" value="${flash['user.email']}" required/>

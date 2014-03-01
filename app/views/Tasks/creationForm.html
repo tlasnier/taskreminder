@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Task Reminder Create new Task' /}
+
+<fieldset class="form" id="task_creation_form">
+    <legend>New task</legend>
+
+    #{form @Tasks.createTask() ,method:'POST'}
+        <div>
+            <label for="task.title">Title :</label>
+            <input id="task.title" type="text" name="task.title" placeholder="title" value="${flash['task.title']}" required/>
+            #{error 'title'/}
+        </div>
+        <div>
+            <label for="task.description">Description :</label>
+            <input id="task.description" type="text" name="task.description" placeholder="description" value="${flash['task.description']}"/>
+        </div>
+        <div>
+            <label for="task.dueDate">Due date :</label>
+            <input id="task.dueDate" type="date" name="task.dueDate" placeholder="dueDate" value="${flash['task.dueDate']}"/>
+        </div>
+        <div>
+            <label for="task.priority">Priority :</label>
+            <select id="task.priority" name="task.priority">
+                <option value="OPTIONAL">Optional</option>
+                <option value="NORMAL" selected >Normal</option>
+                <option value="IMPORTANT">Important</option>
+                <option value="URGENT">Urgent</option>
+            </select>
+        </div>
+        <div>
+            <label for="task.completed">Completed :</label>
+            <input id="task.completed" type="checkbox" name="completed" ${flash['completed']? 'checked' : ''}/>
+        </div>
+        <div>
+            <label for="tags">Tags <span class="hint">(comma separated)</span> :</label>
+            <input id="tags" type="text" name="tags" placeholder="tags" value="${flash['tags']}"/>
+        </div>
+        <input id="task.creation.submit" type="submit" value="Create !"/>
+    #{/form}
+</fieldset>

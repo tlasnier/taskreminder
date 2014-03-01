@@ -5,10 +5,11 @@
     #{stylesheet 'task.css' /}
 #{/set}
 
-<a id="task_creation_button" href="#">
+<a id="task_creation_button" href="@{Tasks.creationForm()}">
     <img alt="add task" src="@{'/public/images/green-cross.png'}" width="15" height="15"/> Create a new task.
 </a>
 
+<div id="task_list">
 #{list items:tasks, as:'task'}
 <div class="${task.priority}">
     <fieldset class="display_task">
@@ -20,7 +21,7 @@
         #{/if}
         <p>Done? <span ${task.completed ? 'class=task_done' : 'class=task_undone' }>${task.completed ? 'Yes !' : 'Not yet'}</span></p>
         #{if task.dueDate}
-            <p>Due date : ${task.dueDate.format("dd/MM/YYYY")}#{if task.dueDatePassed} <span class="warning_due_date"> → Warning !</span> #{/if}</p>
+            <p>Due date : ${task.dueDate.format("dd/MM/YYYY")}#{if task.dueDatePassed} <span class="warning_due_date"> ? Warning !</span> #{/if}</p>
         #{/if}
 
         #{if task.tags}
@@ -36,3 +37,5 @@
     </fieldset>
 </div>
 #{/list}
+
+</div>

@@ -1,27 +1,33 @@
+div#task_list div{
+    display: inline;
+}
+
 #task_creation_button {
     margin: 5px 30px;
     font-size: 120%;
 }
 
 fieldset.display_task {
-    margin: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     width: 40%;
     float: left;
 }
 
-fieldset.display_task > legend {
+fieldset.display_task legend {
     font-weight: bold;
 }
 
-div.URGENT > fieldset {
+div.URGENT fieldset {
     background-color: #222222;
 }
 
-div.IMPORTANT > fieldset {
+div.IMPORTANT fieldset {
     background-color: #303138;
 }
 
-div.OPTIONAL > fieldset {
+div.OPTIONAL fieldset {
     background-color: #494e6a;
 }
 

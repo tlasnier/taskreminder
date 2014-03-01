@@ -5,8 +5,11 @@
 # index page
 GET     /                                       Application.index
 GET     /homepage/                              Application.homepage
+POST    /homepage/                              Application.register
 
 GET     /mytasks/                               Tasks.showUsersTasks
+GET     /task/create/                           Tasks.creationForm
+POST    /task/create/                           Tasks.createTask
 GET     /tasks/edit/{<[0-9]+>id}                Tasks.edit
 POST    /tasks/delete/{<[0-9]+>id}              Tasks.delete
 #GET    /tasks/show/{<[0-9]+>id}

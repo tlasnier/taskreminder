@@ -1,4 +1,5 @@
 div.error {
+    text-shadow: 1px 1px 1px #5c2e03;
     color: orangered;
     margin-top: 60px;
     padding: 20px;

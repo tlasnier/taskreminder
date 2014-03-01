@@ -16,10 +16,12 @@ import java.util.regex.Pattern;
  * Created by Thibault on 25/02/14.
  */
 public class Tasks extends AbstractController {
-    @Before(only = {"edit", "delete"})
+    @Before(only = {"editTask", "editionForm", "delete"})
     public static void checkOwner() {
         Long id = params.get("id", Long.class);
         Task task = Task.findById(id);
+        if (task == null)
+            notFound("This task does not exist!");
         if (!task.getAuthor().equals(getConnectedUser()))
             forbidden("You cannot edit or delete a task that is not yours!");
 
@@ -49,8 +51,63 @@ public class Tasks extends AbstractController {
 
         task.setCompleted(completed);
 
-        Set<String> stringSet = new HashSet<>();
         Set<Tag> tagSet = new HashSet<>();
+        for(String s : extractTagsAsString(tags)) {
+            Tag tag = Tag.createIfNotExists(s);
+            tagSet.add(tag);
+        }
+        task.setTags(tagSet);
+
+        task.save();
+        showUsersTasks();
+    }
+
+    public static void editionForm(Long id) {
+        Task task = Task.findById(id);
+        String tags = tagsToString(task.getTags());
+        render(task, tags);
+    }
+
+    public static void editTask(Long id, @Valid Task task, boolean completed, String tags) {
+        if(validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+            editionForm(task.getId());
+        }
+
+        Task oldTask = Task.findById(id);
+
+        oldTask.setTitle(task.getTitle());
+
+        oldTask.setDescription(task.getDescription());
+
+        oldTask.setDueDate(task.getDueDate());
+
+        oldTask.setPriority(task.getPriority());
+
+        oldTask.setCompleted(completed);
+
+        Set<Tag> tagSet = new HashSet<>();
+        for(String s : extractTagsAsString(tags)) {
+            Tag tag = Tag.createIfNotExists(s);
+            tagSet.add(tag);
+        }
+        oldTask.setTags(tagSet);
+
+        oldTask.save();
+        showUsersTasks();
+    }
+
+    public static void delete(Long id) {
+        Task t = Task.findById(id);
+        t._delete();
+        flash.success("Your task" + t.getTitle() + "has been deleted!");
+        flash.keep();
+        showUsersTasks();
+    }
+
+    public static Set<String> extractTagsAsString(String tags) {
+        Set<String> stringSet = new HashSet<>();
         Pattern pattern = Pattern.compile("([a-zA-Z\\d]+)(\\s*,\\s*([a-zA-Z\\d]+))?");
         Matcher matcher = pattern.matcher(tags);
         if (matcher.find()) {
@@ -60,23 +117,19 @@ public class Tasks extends AbstractController {
         }
         while (matcher.find())
             stringSet.add(matcher.group(1));
-        for(String s : stringSet) {
-            Tag tag = new Tag(s);
-            tag.createIfNotExists();
-            tagSet.add(tag);
+
+        return stringSet;
+    }
+
+    public static String tagsToString(Set<Tag> tags) {
+        StringBuilder builder = new StringBuilder();
+        for (Tag tag : tags) {
+            builder.append(tag.getName()).append(", ");
         }
-        task.setTags(tagSet);
+        if (tags.size() > 1)
+            builder.delete(builder.length()-2, builder.length());
 
-        task.save();
-        showUsersTasks();
-    }
-
-    public static void edit(Long id) {
-
-    }
-
-    public static void delete(Long id) {
-
+        return builder.toString();
     }
 
 }

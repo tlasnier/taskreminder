@@ -10,6 +10,10 @@ body {
     margin: auto;
 }
 
+header {
+    text-shadow: 2px 2px 1px #2d324a;
+}
+
 header h1 {
     font-size: 300%;
     margin-bottom: 10px;
@@ -26,6 +30,7 @@ header h2 {
 
 header .header_emphase {
     color: orangered;
+    text-shadow: #5c2e03;
 }
 
 /*TOP BAR*/

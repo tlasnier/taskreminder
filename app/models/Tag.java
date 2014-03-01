@@ -28,10 +28,12 @@ public class Tag extends Model{
         this.name = name;
     }
 
-    public void createIfNotExists() {
-        Tag inBase = Tag.find("byName", name).first();
+    public static Tag createIfNotExists(String tagName) {
+        Tag inBase = Tag.find("byName", tagName).first();
         if (inBase == null)
-            save();
+            return new Tag(tagName).save();
+        else
+            return inBase;
     }
 
 }

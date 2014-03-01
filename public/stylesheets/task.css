@@ -35,6 +35,12 @@ div.OPTIONAL fieldset {
     color: inherit;
     font-size: 120%;
     margin-top: 0;
+    text-decoration: underline;
+}
+
+.task_attribute_title {
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 span.warning_due_date {

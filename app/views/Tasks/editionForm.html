@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+#{set title:'Task Reminder Edit your Task' /}
+
+<fieldset class="form" id="task_creation_form">
+    <legend>Edit a task</legend>
+
+    #{form @Tasks.editTask() ,method:'POST'}
+        <input type="hidden" name="id" value="${task.id}">
+        <div>
+            <label for="task.title">Title :</label>
+            <input id="task.title" type="text" name="task.title" placeholder="title" value="${flash['task.title']?: task.title}" required/>
+            #{error 'title'/}
+        </div>
+        <div>
+            <label for="task.description">Description :</label>
+            <textarea id="task.description" name="task.description" placeholder="description" >${flash['task.description']?: task.description}</textarea>
+        </div>
+        <div>
+            <label for="task.dueDate">Due date <span class="hint">(yyyy-mm-dd)</span> :</label>
+            <input id="task.dueDate" type="date" name="task.dueDate" placeholder="dueDate" value="${flash['task.dueDate']?: task.dueDate?.format("yyyy-MM-dd")}" pattern="(\d){4}-(\d){2}-(\d){2}"/>
+        </div>
+        <div>
+            <label for="task.priority">Priority :</label>
+            <select id="task.priority" name="task.priority">
+                #{set priority: flash['task.priority']?: task.priority/}
+                <option value="OPTIONAL" ${(priority == models.constants.TaskPriority.OPTIONAL)? 'selected' :''} >Optional</option>
+                <option value="NORMAL" ${(priority == models.constants.TaskPriority.NORMAL)? 'selected' :''} >Normal</option>
+                <option value="IMPORTANT" ${priority == models.constants.TaskPriority.IMPORTANT? 'selected' :''} >Important</option>
+                <option value="URGENT" ${priority == models.constants.TaskPriority.URGENT? 'selected' :''} >Urgent</option>
+            </select>
+        </div>
+        <div>
+            <label for="task.completed">Completed :</label>
+            <input id="task.completed" type="checkbox" name="completed" ${flash['completed'] || task.completed ? 'checked' : ''}/>
+        </div>
+        <div>
+            <label for="tags">Tags <span class="hint">(comma separated)</span> :</label>
+            <input id="tags" type="text" name="tags" placeholder="tags" value="${flash['tags']?:tags}"/>
+        </div>
+        <input id="task.creation.submit" type="submit" value="Save !"/>
+    #{/form}
+</fieldset>

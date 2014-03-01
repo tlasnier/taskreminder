@@ -44,7 +44,7 @@ public class Application extends AbstractController {
         if (validation.hasErrors()) {
             params.flash();
             validation.keep();
-            render("@index");
+            index();
         }
 
         else {
@@ -65,8 +65,7 @@ public class Application extends AbstractController {
     }
 
     public static void homepage() {
-        User user = User.find("byUsername", session.get("user")).first();
-        render(user);
+        Tasks.showUsersTasks();
     }
 
 }

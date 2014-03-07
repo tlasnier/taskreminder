@@ -74,3 +74,6 @@ ul#top-bar li a:hover,ul#nav li a:focus {
 }
 
 /*END TOP BAR*/
+a, input[type="button"], input[type="submit"]{
+    cursor: pointer
+}

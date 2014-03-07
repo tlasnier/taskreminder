@@ -51,7 +51,7 @@ public class Tasks extends AbstractController {
 
         task.setCompleted(completed);
 
-        Set<Tag> tagSet = new HashSet<>();
+        Set<Tag> tagSet = new HashSet<Tag>();
         for(String s : extractTagsAsString(tags)) {
             Tag tag = Tag.createIfNotExists(s);
             tagSet.add(tag);
@@ -87,7 +87,7 @@ public class Tasks extends AbstractController {
 
         oldTask.setCompleted(completed);
 
-        Set<Tag> tagSet = new HashSet<>();
+        Set<Tag> tagSet = new HashSet<Tag>();
         for(String s : extractTagsAsString(tags)) {
             Tag tag = Tag.createIfNotExists(s);
             tagSet.add(tag);
@@ -107,7 +107,7 @@ public class Tasks extends AbstractController {
     }
 
     public static Set<String> extractTagsAsString(String tags) {
-        Set<String> stringSet = new HashSet<>();
+        Set<String> stringSet = new HashSet<String>();
         Pattern pattern = Pattern.compile("([a-zA-Z\\d]+)(\\s*,\\s*([a-zA-Z\\d]+))?");
         Matcher matcher = pattern.matcher(tags);
         if (matcher.find()) {

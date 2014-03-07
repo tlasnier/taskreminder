@@ -24,8 +24,11 @@ public class Application extends AbstractController {
 
         try {
             User.connect(username, password);
-        }
-        catch (NoUserFoundException | BadPasswordException e) {
+        } catch (NoUserFoundException e) {
+            System.out.println("ERROR : " + e.getMessage());
+            flash.error(e.getMessage());
+            index();
+        } catch (BadPasswordException e) {
             System.out.println("ERROR : " + e.getMessage());
             flash.error(e.getMessage());
             index();

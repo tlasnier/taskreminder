@@ -15,8 +15,8 @@
             <textarea id="task.description" name="task.description" placeholder="description" >${flash['task.description']}</textarea>
         </div>
         <div>
-            <label for="task.dueDate">Due date <span class="hint">(yyyy-mm-dd)</span> :</label>
-            <input id="task.dueDate" type="date" name="task.dueDate" placeholder="dueDate" value="${flash['task.dueDate']}" pattern="(\d){4}-(\d){2}-(\d){2}"/>
+            <label for="task.dueDate">Due date :</label>
+            <input id="task.dueDate" type="date" name="task.dueDate" placeholder="yyyy-mm-dd" value="${flash['task.dueDate']}" pattern="(\d){4}-(\d){2}-(\d){2}"/>
         </div>
         <div>
             <label for="task.priority">Priority :</label>
@@ -32,8 +32,8 @@
             <input id="task.completed" type="checkbox" name="completed" ${flash['completed']? 'checked' : ''}/>
         </div>
         <div>
-            <label for="tags">Tags <span class="hint">(comma separated)</span> :</label>
-            <input id="tags" type="text" name="tags" placeholder="tags" value="${flash['tags']}"/>
+            <label for="tags">Tags :</label>
+            <input id="tags" type="text" name="tags" placeholder="comma separated" value="${flash['tags']}"/>
         </div>
         <input id="task.creation.submit" type="submit" value="Create !"/>
     #{/form}

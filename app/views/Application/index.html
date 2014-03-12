@@ -34,15 +34,15 @@
             #{/if}
         </div>
         <div>
-            <label for="register.username">Username <span class="hint">(3 chars min)</span> :</label>
-            <input id="register.username" type="text" name="user.username" placeholder="username" value="${flash['user.username']}" required pattern=".{3,15}"/>
+            <label for="register.username">Username :</label>
+            <input id="register.username" type="text" name="user.username" placeholder="3 chars min" value="${flash['user.username']}" required pattern=".{3,15}"/>
             #{if flash.get("form").equals("register")}
                 <p class="error">#{error 'user.username'/}</p>
             #{/if}
         </div>
         <div>
-            <label for="register.password">Password <span class="hint">(6 chars min)</span> :</label>
-            <input id="register.password" type="password" name="password" placeholder="password" required pattern=".{6,}"/>
+            <label for="register.password">Password :</label>
+            <input id="register.password" type="password" name="password" placeholder="6 chars min" required pattern=".{6,}"/>
             #{if flash.get("form").equals("register")}
                 <p class="error">#{error 'password'/}</p>
             #{/if}

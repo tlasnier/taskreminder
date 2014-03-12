@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * Created by Thibault on 25/02/14.
  */
 public class Tasks extends AbstractController {
-    @Before(only = {"editTask", "editionForm", "delete"})
+    @Before(only = {"editTask", "editionForm", "delete", "complete"})
     public static void checkOwner() {
         Long id = params.get("id", Long.class);
         Task task = Task.findById(id);
@@ -29,6 +29,13 @@ public class Tasks extends AbstractController {
 
     public static void creationForm() {
         render();
+    }
+
+    public static void complete(long id) {
+        Task task = Task.findById(id);
+        task.setCompleted(true);
+        task.save();
+        showUsersTasks();
     }
 
     public static void showUsersTasks() {

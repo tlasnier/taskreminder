@@ -34,6 +34,11 @@
         #{form @Tasks.editTask(task.id), method:'GET'}
             <input type="submit" value="Edit"/>
         #{/form}
+        #{if !task.completed}
+            #{form @Tasks.complete(task.id), method:'POST'}
+                <input type="submit" value="Complete!"/>
+            #{/form}
+        #{/if}
     </fieldset>
 </div>
 #{/list}

@@ -30,7 +30,7 @@ header h2 {
 
 header .header_emphase {
     color: orangered;
-    text-shadow: #5c2e03;
+    text-shadow: 2px 2px 1px #5c2e03;
 }
 
 /*TOP BAR*/
@@ -40,8 +40,12 @@ nav {
     color: #FEF4E9;
     height: 50px;
     border: 1px solid #DA7C0C;
+    background: #F78D1D;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FAA51A), to(#F47A20));
     background: -moz-linear-gradient(center top , #FAA51A, #F47A20) repeat scroll 0% 0% transparent;
     border-radius: 0.5em;
+    -webkit-border-radius: 0.5em
+    -moz-border-radius: 0.5em
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 

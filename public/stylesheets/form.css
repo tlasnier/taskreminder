@@ -3,6 +3,8 @@
     color: orange;
     border-width: 1px;
     border-radius: 3px;
+    -webkit-border-radius: 3px
+    -moz-border-radius: 3px
     border-color: orange;
 }
 
@@ -11,6 +13,8 @@ fieldset {
     padding: 20px;
     border-width: 2px;
     border-radius: 10px;
+    -webkit-border-radius: 10px
+    -moz-border-radius: 10px
 }
 
 form > div {
@@ -42,6 +46,8 @@ fieldset>legend {
 input[type=submit] {
     width: auto;
     border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
     background: #829C91;
     float: right;
     margin-top: 5px;

@@ -11,36 +11,7 @@
 
 <div id="task_list">
 #{list items:tasks, as:'task'}
-<div class="${task.priority}">
-    <fieldset class="display_task">
-        <legend>${task.priority}</legend>
-        <h3 class="task_title"><a href =@{Tasks.editTask(task.id)}>${task.title}</a></h3>
-        #{if task.description}
-            <p><span class="task_attribute_title">Description :</span></p>
-            <p class="task_description">${task.description}</p>
-        #{/if}
-        <p><span class="task_attribute_title">Done?</span> <span ${task.completed ? 'class=task_done' : 'class=task_undone' }>${task.completed ? 'Yes !' : 'Not yet'}</span></p>
-        #{if task.dueDate}
-            <p><span class="task_attribute_title">Due date :</span> ${task.dueDate.format("dd/MM/YYYY")}#{if task.dueDatePassed} <span class="warning_due_date"> ? Warning !</span> #{/if}</p>
-        #{/if}
-
-        #{if task.tags}
-            <p><span class="task_attribute_title">Tags :</span> #{list items:task.tags, as:'tag'}<a href="#">${tag.name}</a>#{if tag_isLast}.#{/if}#{else}, #{/else}#{/list}</p>
-        #{/if}
-
-        #{form @Tasks.delete(task.id), method:'POST'}
-            <input type="submit" value="Delete" onclick="return(confirm('Do you really want to delete this task?'));" />
-        #{/form}
-        #{form @Tasks.editTask(task.id), method:'GET'}
-            <input type="submit" value="Edit"/>
-        #{/form}
-        #{if !task.completed}
-            #{form @Tasks.complete(task.id), method:'POST'}
-                <input type="submit" value="Complete!"/>
-            #{/form}
-        #{/if}
-    </fieldset>
-</div>
+    #{display task:task, as:'editable'/}
 #{/list}
 
 </div>

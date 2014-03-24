@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+#{set 'title'}
+Task-Reminder See ${username} tasks
+#{/set}
+#{set 'moreStyles'}
+    #{stylesheet 'task.css' /}
+#{/set}
+<script>
+    function submitAddFriendForm()
+    {
+        document.getElementById("addFriendForm").submit();
+    }
+    function submitRemoveFriendForm()
+    {
+        document.getElementById("removeFriendForm").submit();
+    }
+</script>
+
+
+#{if !isFriend}
+#{form @Users.addFriend(), method:'POST', id:'addFriendForm'}
+    <input type="hidden" name="username" value="${username}">
+#{/form}
+<a id="user_add_friend_button" href="javascript: submitAddFriendForm()">
+    <img alt="add friend" src="@{'/public/images/green-cross.png'}" width="15" height="15"/> Add ${username} as friend.
+</a>
+#{/if}
+
+#{else }
+    #{form @Users.removeFriend(), method:'POST', id:'removeFriendForm'}
+    <input type="hidden" name="username" value="${username}">
+    #{/form}
+    <a id="user_add_friend_button" href="javascript: submitRemoveFriendForm()">
+        <img alt="remove friend" src="@{'/public/images/red-cross.png'}" width="15" height="15"/> Remove ${username} from my friends.
+    </a>
+
+#{/else}
+
+<div id="task_list">
+#{if tasks}
+    #{list items:tasks, as:'task'}
+        #{display task:task/}
+    #{/list}
+#{/if}
+#{else }
+    There is no public task to see from ${username} !
+#{/else}
+
+</div>

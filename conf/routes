@@ -1,19 +1,21 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
-# ~~~~
 
 # index page
 GET     /                                       Application.index
 
-GET     /mytasks/                               Tasks.showUsersTasks
-GET     /task/create/                           Tasks.creationForm
-POST    /task/create/                           Tasks.createTask
+GET     /tasks/create/                           Tasks.creationForm
+POST    /tasks/create/                           Tasks.createTask
 GET     /tasks/edit/{<[0-9]+>id}                Tasks.editionForm
 POST    /tasks/edit/{<[0-9]+>id}                Tasks.editTask
 POST    /tasks/delete/{<[0-9]+>id}              Tasks.delete
-#GET    /tasks/show/{<[0-9]+>id}
+#GET     /tasks/show/{<[0-9]+>id}
 
+
+GET     /users/{<[^"/"]+>username}                   Tasks.showOthersTasks
+GET     /tasks/                                 Tasks.showUsersTasks
 GET     /account/                               Users.editAccount
+GET     /friends/                               Users.showFriends
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -3,6 +3,7 @@ package controllers;
 import models.Tag;
 import models.Task;
 import models.User;
+import models.constants.TaskVisibility;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.groovy.util.StringUtil;
 import play.data.validation.Valid;
@@ -36,6 +37,16 @@ public class Tasks extends AbstractController {
         task.setCompleted(true);
         task.save();
         showUsersTasks();
+    }
+
+    public static void showOthersTasks(String username) {
+        User user = User.find("byUsername", username).first();
+        if (user == null)
+            notFound("User : " + username + " does not exist");
+        List<Task> tasks = Task.find("byAuthorAndVisibility", user, TaskVisibility.PUBLIC).fetch();
+        boolean isFriend = Users.isFriend(username);
+
+        render(username, tasks, isFriend);
     }
 
     public static void showUsersTasks() {

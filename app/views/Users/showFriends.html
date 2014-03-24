@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+#{set title:'Task-Reminder See your friends' /}
+#{set 'moreStyles'}
+    #{stylesheet 'friend.css' /}
+#{/set}
+<div id="content_friend">
+<div id="friend_list">
+    #{if friends}
+    <ul>
+        #{list items:friends, as:'friend'}
+            <li>
+                <a class="friend" href="@{Tasks.showOthersTasks(friend.username)}">${friend.username}</a>
+            </li>
+        #{/list}
+    </ul>
+    #{/if}
+    #{else }
+        You have currently no friend!
+    #{/else}
+
+
+</div>
+<div id="user_search">
+    <fieldset>
+        <legend>User search</legend>
+        #{form @Users.showFriends(), method:'GET'}
+            <input type="text" placeholder="Type a username" name="search">
+            <input type="submit" value="Search">
+        #{/form}
+
+        #{if searchResult}
+            <ul id="user_list">
+                #{list items:searchResult, as:'result'}
+                    <li><a href=@{Tasks.showOthersTasks(result)}>${result}</a></li>
+                #{/list}
+            </ul>
+
+        #{/if}
+    </fieldset>
+</div>
+
+</div>

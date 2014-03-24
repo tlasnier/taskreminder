@@ -9,6 +9,9 @@ import play.db.jpa.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import java.util.Set;
 
 /**
  * Created by Thibault on 08/01/14.
@@ -34,6 +37,9 @@ public class User extends Model{
     private String firstname;
 
     private String lastname;
+
+    @ManyToMany
+    private Set<User> friends;
 
     public static User connect(String username, String password) throws NoUserFoundException, BadPasswordException {
         User user = User.find("byUsername", username).first();
@@ -93,4 +99,19 @@ public class User extends Model{
         this.username = username;
     }
 
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<User> friends) {
+        this.friends = friends;
+    }
+
+    public boolean addFriend(User user) {
+        return friends.add(user);
+    }
+
+    public boolean removeFriend(User user){
+        return friends.remove(user);
+    }
 }

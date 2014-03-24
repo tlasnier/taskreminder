@@ -1,0 +1,29 @@
+#content_friend {
+    width: 100%;
+}
+
+#friend_list {
+    margin: 10px;
+    margin-top: 25px;
+    width: 40%;
+    float: left;
+}
+
+#user_search {
+    margin: 10px;
+    width: 40%;
+    float: right;
+}
+
+#user_search fieldset{
+    margin-top: 25px;
+
+}
+
+#user_search input[type="submit"] {
+    margin: 0;
+}
+
+#user_list {
+    margin-top: 10px;
+}

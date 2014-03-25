@@ -51,6 +51,7 @@ nav {
 
 div#menu-container {
     float: right;
+    height: 100%;
 }
 
 a {
@@ -58,18 +59,31 @@ a {
     color: inherit;
 }
 
+ul#top-bar {
+    margin: 0;
+    padding: 0 40px;
+    height: 100%;
+}
+
 ul#top-bar li {
     float: left;
     list-style: none outside none;
+    height: 100%;
+}
+
+div.nav_item {
+    padding: 10px 40px;
+    height: auto;
 }
 
 ul#top-bar li a {
-    padding: 0px 70px 6px 0;
+    /*padding: 10px 70px 6px 10px;*/
     color: #FFF;
     margin-right: 2px;
     font-size: 140%;
     text-shadow: 1px 1px #7E4D0E;
-    position: relative;
+    position: inherit;
+    height: 100%;
 }
 
 ul#top-bar li a:hover,ul#nav li a:focus {

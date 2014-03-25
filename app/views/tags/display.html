@@ -1,6 +1,13 @@
 <div class="${_task.priority}">
     <fieldset class="display_task">
         <legend>${_task.priority}</legend>
+        #{if _task.visibility == models.constants.TaskVisibility.PUBLIC}
+            <img class="task_visibility" src="@{'public/images/public.png'}" width="30" height="30">
+        #{/if}
+        #{elseif _task.visibility == models.constants.TaskVisibility.PRIVATE}
+            <img class="task_visibility" src="@{'public/images/private.png'}" width="30" height="30">
+        #{/elseif}
+
         <h3 class="task_title">
         #{if _as == 'editable'}
             <a href =@{Tasks.editTask(_task.id)}>${_task.title}</a>

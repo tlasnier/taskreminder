@@ -33,8 +33,9 @@ Task-Reminder See ${username} tasks
     <a id="user_add_friend_button" href="javascript: submitRemoveFriendForm()">
         <img alt="remove friend" src="@{'/public/images/red-cross.png'}" width="15" height="15"/> Remove ${username} from my friends.
     </a>
-
 #{/else}
+
+<div class="center">These are <span class="username">${username}</span>'s public tasks.</div>
 
 <div id="task_list">
 #{if tasks}

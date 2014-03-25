@@ -5,8 +5,6 @@ import models.exception.BadPasswordException;
 import models.exception.NoUserFoundException;
 import notifiers.Mails;
 import play.data.validation.*;
-import play.mvc.Before;
-import play.mvc.Controller;
 
 public class Application extends AbstractController {
 

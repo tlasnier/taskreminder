@@ -103,6 +103,8 @@ public class Tasks extends AbstractController {
 
         oldTask.setPriority(task.getPriority());
 
+        oldTask.setVisibility(task.getVisibility());
+
         oldTask.setCompleted(completed);
 
         Set<Tag> tagSet = new HashSet<Tag>();

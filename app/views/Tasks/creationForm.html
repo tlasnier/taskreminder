@@ -21,10 +21,19 @@
         <div>
             <label for="task.priority">Priority :</label>
             <select id="task.priority" name="task.priority">
-                <option value="OPTIONAL">Optional</option>
-                <option value="NORMAL" selected >Normal</option>
-                <option value="IMPORTANT">Important</option>
-                <option value="URGENT">Urgent</option>
+                #{set priority: flash['task.priority']/}
+                <option value="OPTIONAL" ${(priority == models.constants.TaskPriority.OPTIONAL)? 'selected' :''} >Optional</option>
+                <option value="NORMAL" ${(priority == models.constants.TaskPriority.NORMAL)? 'selected' :''} >Normal</option>
+                <option value="IMPORTANT" ${priority == models.constants.TaskPriority.IMPORTANT? 'selected' :''} >Important</option>
+                <option value="URGENT" ${priority == models.constants.TaskPriority.URGENT? 'selected' :''} >Urgent</option>
+            </select>
+        </div>
+        <div>
+            <label for="task.visibility">Visibility :</label>
+            <select id="task.visibility" name="task.visibility">
+                #{set visibility: flash['task.visibility']/}
+                <option value="PUBLIC" ${(visibility == models.constants.TaskVisibility.PUBLIC)? 'selected' :''} >Public</option>
+                <option value="PRIVATE" ${(visibility == models.constants.TaskVisibility.PRIVATE)? 'selected' :''} >Private</option>
             </select>
         </div>
         <div>

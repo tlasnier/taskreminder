@@ -30,6 +30,14 @@
             </select>
         </div>
         <div>
+            <label for="task.visibility">Visibility :</label>
+            <select id="task.visibility" name="task.visibility">
+                #{set visibility: flash['task.visibility']?: task.visibility/}
+                <option value="PUBLIC" ${(visibility == models.constants.TaskVisibility.PUBLIC)? 'selected' :''} >Public</option>
+                <option value="PRIVATE" ${(visibility == models.constants.TaskVisibility.PRIVATE)? 'selected' :''} >Private</option>
+            </select>
+        </div>
+        <div>
             <label for="task.completed">Completed :</label>
             <input id="task.completed" type="checkbox" name="completed" ${flash['completed'] || task.completed ? 'checked' : ''}/>
         </div>

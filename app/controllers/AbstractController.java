@@ -23,7 +23,7 @@ public abstract class AbstractController extends Controller {
     }
 
     public static boolean isUserLoggedIn() {
-        return session.contains("user");
+        return session.contains("user") && (User.find("byUsername", session.get("user")).first() != null);
     }
 
     public static User getConnectedUser() {

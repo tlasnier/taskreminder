@@ -1,9 +1,26 @@
+div.center {
+    width: 100%;
+    margin: 15px auto;
+    text-align: center;
+    font-size: 150%;
+}
+div.center span.username {
+    font-weight: bold;
+    /*color: #DA7C0C;*/
+    text-shadow: #7E4D0E 1px 1px 1px;
+}
+
 #task_list {
     margin-top: 10px;
 }
 
 #task_list div{
     display: inline;
+}
+
+img.task_visibility {
+    float: right;
+    margin: -15px -5px;
 }
 
 #task_creation_button {

@@ -12,7 +12,7 @@ POST    /tasks/delete/{<[0-9]+>id}              Tasks.delete
 #GET     /tasks/show/{<[0-9]+>id}
 
 
-GET     /users/{<[^"/"]+>username}                   Tasks.showOthersTasks
+GET     /users/{<[^"/"]+>username}              Tasks.showOthersTasks
 GET     /tasks/                                 Tasks.showUsersTasks
 GET     /account/                               Users.editAccount
 GET     /friends/                               Users.showFriends

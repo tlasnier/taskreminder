@@ -3,6 +3,7 @@ package controllers;
 import models.User;
 import models.exception.BadPasswordException;
 import models.exception.NoUserFoundException;
+import notifiers.Mails;
 import play.data.validation.*;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -54,7 +55,8 @@ public class Application extends AbstractController {
             User.register(user, password);
             user.save();
 
-            //TODO : send an email.
+            Mails.welcome(user);
+            //TODO account validation
 
             session.put("user", user.getUsername());
 
